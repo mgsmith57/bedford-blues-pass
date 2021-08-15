@@ -19,6 +19,20 @@ self.addEventListener("install", installEvent => {
     )
 });
 
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(keys => Promise.all(
+            keys.map(key => {
+                if (staticPass !== key) {
+                    return caches.delete(key);
+                }
+            })
+        )).then(() => {
+            console.log('Cache version installed - ' + staticPass);
+        })
+    );
+});
+
 self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
         caches.match(fetchEvent.request).then(res => {
