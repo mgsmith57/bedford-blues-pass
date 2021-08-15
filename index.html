@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="img/blues-small.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Bedford Blues Pass</title>
+</head>
+<body>
+<header>
+    <div class="header-logo">
+        <img src="img/blues-small.png" alt="Bedford Blues Logo" />
+    </div>
+    <h1>
+        Bedford Blues Pass
+    </h1>
+
+    <button class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 3rem; width: 3rem;">
+            <path d="M0 0h512v512H0z" fill="transparent"></path>
+            <g class="" transform="translate(0,0)">
+                <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z" class="handles"></path>
+            </g>
+        </svg>
+    </button>
+</header>
+<nav>
+    <ul>
+        <li><a data-target="ticket">Ticket</a></li>
+        <li><a data-target="settings">Settings</a></li>
+<!--        <li><a data-target="about">About</a></li>-->
+    </ul>
+</nav>
+<main>
+    <div class="container">
+        <div id="settings" class="card">
+            <h1>Settings</h1>
+            <p>
+                Load your season ticket, either by scanning
+                QR code, uploading a screenshot of the QR code or entering
+                your season ticket number manually.
+            </p>
+
+            <div class="setting-buttons">
+                <button class="btn" data-target="settings-scan">Scan QR Code</button>
+                <button class="btn" data-target="settings-upload">Upload QR Code</button>
+                <button class="btn" data-target="settings-input">Enter Season Ticket Number</button>
+            </div>
+        </div>
+
+        <div id="settings-scan" class="card">
+            <h1>Scan QR Code</h1>
+            <p>
+                Scan your season ticket QR code to load it. Don't worry
+                if the generated QR code doesn't look the same as the one
+                that you scanned, it will still have the same information.
+            </p>
+            <div>
+                <div><video id="qr-video" style="display: none"></video></div>
+                <div id="scan-region"></div>
+            </div>
+            <div>
+                <button id="flash-toggle" class="btn">📸 Flash: <span id="flash-state">off</span></button>
+            </div>
+        </div>
+
+        <div id="settings-upload" class="card">
+            <h1>Upload QR Code</h1>
+            <p>
+                If you have an image or screenshot of your season ticket
+                QR code you can upload it here to generate your QR code
+                ticket.
+            </p>
+            <div class="control">
+                <label for="file-selector" class="custom-file-upload {
+">Upload QR Image</label>
+                <input type="file" id="file-selector" accept="image/*">
+            </div>
+        </div>
+
+        <div id="settings-input" class="card">
+            <h1>Enter Season Ticket Number</h1>
+            <p>
+                If you know your season ticket number you can enter it
+                here to generate your QR code ticket.
+            </p>
+            <div class="control">
+                <input id="manual-input" type="text" placeholder="Enter Season Ticket Number"/>
+            </div>
+            <div>
+                <button id="manual-submit" class="btn">Create QR Code</button>
+            </div>
+        </div>
+
+        <div id="ticket" class="card">
+            <h1>Your Season Ticket</h1>
+            <canvas id="qr-code"></canvas>
+            <p id="qr-result"></p>
+        </div>
+    </div>
+</main>
+
+<script src="js/qrious.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
