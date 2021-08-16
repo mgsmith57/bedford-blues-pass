@@ -99,7 +99,23 @@ import QrScanner from './qr-scanner.min.js';
         });
     }
 
+    function initIosInstaller() {
+        const isIos = () => {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            return /iphone|ipad|ipod/.test( userAgent );
+        }
+
+        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+        if (isIos() && !isInStandaloneMode()) {
+            this.setState({ showInstallMessage: true });
+        }
+    }
+
     function init() {
+        if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            body.classList.add('is-mobile');
+        }
         const value = window.localStorage.getItem('ticket');
         body.classList.toggle('has-ticket', value != null && value !== '');
         setValueAndShow(value);
@@ -111,6 +127,7 @@ import QrScanner from './qr-scanner.min.js';
             return;
         }
         window.localStorage.setItem('ticket', value);
+        body.classList.add('has-ticket');
         document.getElementById('qr-result').innerHTML = value;
         qr.set({
             foreground: '#002859',
@@ -128,6 +145,7 @@ import QrScanner from './qr-scanner.min.js';
     initNav();
     initQrScanner();
     initManualSubmitter();
+    initIosInstaller()
     init();
 })();
 

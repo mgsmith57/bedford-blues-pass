@@ -4,8 +4,8 @@
   "display": "standalone",
   "start_url": "index.html",
   "description": "Bedford Blues season ticket holder",
-  "short_name": "Bedford Blues Pass",
-  "name": "Bedford Blues Pass",
+  "short_name": "Blues Pass",
+  "name": "Blues Pass",
   "icons": [
     {
       "src": "/img/icon-192x192.png",

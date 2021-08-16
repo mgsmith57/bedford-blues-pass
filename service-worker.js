@@ -1,4 +1,4 @@
-const staticPass = "blues-pass-v1.3"
+const staticPass = "blues-pass-v1.4"
 const assets = [
     "/",
     "/index.html",
