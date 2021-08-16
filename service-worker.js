@@ -1,4 +1,4 @@
-const staticPass = "blues-pass-v1.1"
+const staticPass = "blues-pass-v1.3"
 const assets = [
     "/",
     "/index.html",
@@ -8,7 +8,12 @@ const assets = [
     "/js/qr-scanner.min.js",
     "/js/qr-scanner-worker.min.js",
     "/img/blues-small.png",
-    "/img/favicon.ico"
+    "/img/favicon.ico",
+    "/img/icon-192x192.png",
+    "/img/icon-256x256.png",
+    "/img/icon-384x384.png",
+    "/img/icon-512x512.png",
+    "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700&display=swap"
 ];
 
 self.addEventListener("install", installEvent => {
@@ -38,5 +43,31 @@ self.addEventListener("fetch", fetchEvent => {
         caches.match(fetchEvent.request).then(res => {
             return res || fetch(fetchEvent.request)
         })
-    )
+    );
+    fetchEvent.waitUntil(
+        update(fetchEvent.request).then(refresh)
+    );
 });
+
+function update(request) {
+    return caches.open(staticPass).then(function (cache) {
+        return fetch(request).then(function (response) {
+            return cache.put(request, response.clone()).then(function () {
+                return response;
+            });
+        });
+    });
+}
+
+function refresh(response) {
+    return self.clients.matchAll().then(function (clients) {
+        clients.forEach(function (client) {
+        var message = {
+            type: 'refresh',
+            url: response.url,
+            eTag: response.headers.get('ETag')
+        };
+            client.postMessage(JSON.stringify(message));
+        });
+    });
+}

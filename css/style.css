@@ -1,6 +1,8 @@
 :root {
     --palette-dark-blue: #002859;
     --palette-light-blue: #8ec4eb;
+    --palette-lighter-blue: rgba(142, 196, 235, 0.3);
+    --palette-lightest-blue: rgba(142, 196, 235, 0.1);
 }
 
 * {
@@ -17,6 +19,10 @@ main {
     max-width: 480px;
     margin: auto;
     padding: 3rem 0.75rem;
+}
+
+main a {
+    text-decoration: underline;
 }
 
 .container {
@@ -37,6 +43,7 @@ main {
     color: var(--palette-light-blue);
 }
 
+select,
 input {
     display: block;
     width: 100%;
@@ -63,7 +70,7 @@ input[type="file"] {
 }
 
 .card h1 {
-    margin-top: 0;
+    margin-top: 1rem;
     padding-top: 0;
     font-variant: petite-caps;
 }
@@ -75,6 +82,15 @@ body:not(.has-camera) [data-target=settings-scan] {
 body:not(.has-flash) #flash-toggle {
     display: none;
 }
+
+body:not(.has-ticket) .with-ticket {
+    display: none;
+}
+
+body.has-ticket .without-ticket {
+    display: none;
+}
+
 
 #flash-toggle {
     width: unset;
@@ -136,6 +152,7 @@ nav {
     transition: transform 0.2s;
     list-style: none;
     padding-top: 4rem;
+    z-index: 10;
 }
 
 .nav-icon {
@@ -179,6 +196,23 @@ nav.open {
 
 .nav-icon.open .handles {
     fill: var(--palette-light-blue);
+}
+
+#fixtures table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#fixtures table tr:nth-child(odd){
+    background: var(--palette-lighter-blue);
+}
+
+#fixtures table tr:nth-child(even){
+    background: var(--palette-lightest-blue);
+}
+
+#fixtures .home {
+    font-weight: 700;
 }
 
 

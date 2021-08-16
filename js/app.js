@@ -1,6 +1,7 @@
 import QrScanner from './qr-scanner.min.js';
 
 (function() {
+    const body = document.querySelector('body');
     const qr = new QRious({
         element: document.getElementById('qr-code'),
         size: 400,
@@ -32,7 +33,6 @@ import QrScanner from './qr-scanner.min.js';
     }();
 
     function initQrScanner() {
-        const body = document.querySelector('body');
         QrScanner.WORKER_PATH = 'js/qr-scanner-worker.min.js';
         QrScanner.hasCamera().then(hasCamera => body.classList.toggle('has-camera', hasCamera));
         const scanner = new QrScanner(
@@ -51,7 +51,7 @@ import QrScanner from './qr-scanner.min.js';
         }
 
         document.getElementById('flash-toggle').addEventListener('click', () => {
-            scanner.toggleFlash().then(() => flashState.textContent = scanner.isFlashOn() ? 'On' : 'Off');
+            scanner.toggleFlash().then(() => document.getElementById('flash-state').textContent = scanner.isFlashOn() ? 'On' : 'Off');
         });
 
         const scanCard = document.getElementById('settings-scan');
@@ -101,12 +101,9 @@ import QrScanner from './qr-scanner.min.js';
 
     function init() {
         const value = window.localStorage.getItem('ticket');
-        if (value) {
-            setValueAndShow(value);
-            Cards.show('ticket');
-        } else {
-            Cards.show('settings')
-        }
+        body.classList.toggle('has-ticket', value != null && value !== '');
+        setValueAndShow(value);
+        Cards.show('ticket');
     }
 
     function setValue(value) {

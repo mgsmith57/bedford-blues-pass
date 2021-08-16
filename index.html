@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -33,6 +33,7 @@
 <nav>
     <ul>
         <li><a data-target="ticket">Ticket</a></li>
+        <li><a data-target="fixtures">Fixtures</a></li>
         <li><a data-target="settings">Settings</a></li>
 <!--        <li><a data-target="about">About</a></li>-->
     </ul>
@@ -66,7 +67,7 @@
                 <div id="scan-region"></div>
             </div>
             <div>
-                <button id="flash-toggle" class="btn">📸 Flash: <span id="flash-state">off</span></button>
+                <button id="flash-toggle" class="btn">📸 Flash: <span id="flash-state">Off</span></button>
             </div>
         </div>
 
@@ -78,8 +79,7 @@
                 ticket.
             </p>
             <div class="control">
-                <label for="file-selector" class="custom-file-upload {
-">Upload QR Image</label>
+                <label for="file-selector" class="custom-file-upload">Upload QR Image</label>
                 <input type="file" id="file-selector" accept="image/*">
             </div>
         </div>
@@ -100,8 +100,42 @@
 
         <div id="ticket" class="card">
             <h1>Your Season Ticket</h1>
-            <canvas id="qr-code"></canvas>
-            <p id="qr-result"></p>
+            <div class="with-ticket">
+                <canvas id="qr-code"></canvas>
+                <p id="qr-result"></p>
+            </div>
+            <div class="without-ticket">
+                <p>
+                    Go to <a data-target="settings">Settings</a> to add your season ticket
+                    QR code for easy access.
+                </p>
+            </div>
+        </div>
+
+        <div id="fixtures" class="card">
+            <h1>Fixtures 2021/22</h1>
+            <table>
+                <tr class="away"><td>25 Sep</td><td>Jersey Reds</td><td>A</td></tr>
+                <tr class="home"><td>2 Oct</td><td>Doncaster Knights</td><td>H</td></tr>
+                <tr class="away"><td>9 Oct</td><td>Ampthill</td><td>A</td></tr>
+                <tr class="home"><td>23 Oct</td><td>Richmond</td><td>H</td></tr>
+                <tr class="away"><td>30 Oct</td><td>Hartpury</td><td>A</td></tr>
+                <tr class="home"><td>6 Nov</td><td>Ealing Trailfinders</td><td>H</td></tr>
+                <tr class="away"><td>20 Nov</td><td>Cornish Pirates</td><td>A</td></tr>
+                <tr class="home"><td>27 Nov</td><td>Nottingham</td><td>H</td></tr>
+                <tr class="away"><td>4 Dec</td><td>Coventry</td><td>A</td></tr>
+                <tr class="home"><td>11 Dec</td><td>London Scottish</td><td>H</td></tr>
+                <tr class="home"><td>26 Dec</td><td>Jersery Reds</td><td>H</td></tr>
+                <tr class="away"><td>1 Jan</td><td>Doncaster Knights</td><td>A</td></tr>
+                <tr class="home"><td>15 Jan</td><td>Ampthill</td><td>H</td></tr>
+                <tr class="away"><td>22 Jan</td><td>Richmond</td><td>A</td></tr>
+                <tr class="home"><td>29 Jan</td><td>Hartpury</td><td>H</td></tr>
+                <tr class="away"><td>12 Feb</td><td>Ealing Trailfinders</td><td>A</td></tr>
+                <tr class="home"><td>19 Feb</td><td>Cornish Pirates</td><td>H</td></tr>
+                <tr class="away"><td>26 Feb</td><td>Nottingham</td><td>A</td></tr>
+                <tr class="home"><td>12 Mar</td><td>Coventry</td><td>H</td></tr>
+                <tr class="away"><td>19 Mar</td><td>London Scottish</td><td>A</td></tr>
+            </table>
         </div>
     </div>
 </main>
