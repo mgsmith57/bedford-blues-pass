@@ -113,11 +113,15 @@ import QrScanner from './qr-scanner.min.js';
     // }
 
     function init() {
-        if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-            body.classList.add('is-mobile');
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            // do things here
+            // set a variable to be used when calling something
+            // e.g. call Google Analytics to track standalone use
         }
         const value = window.localStorage.getItem('ticket');
         body.classList.toggle('has-ticket', value != null && value !== '');
+        body.classList.toggle('is-mobile', /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        body.classList.toggle('is-installed', window.matchMedia('(display-mode: standalone)').matches);
         setValueAndShow(value);
         Cards.show('ticket');
     }

@@ -91,6 +91,9 @@ body.has-ticket .without-ticket {
     display: none;
 }
 
+body.is-installed .uninstalled {
+    display: none;
+}
 
 #flash-toggle {
     width: unset;

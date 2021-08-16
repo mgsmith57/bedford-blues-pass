@@ -15,7 +15,7 @@
 <body>
 <header>
     <div class="header-logo">
-        <img src="img/blues-small.png" alt="Bedford Blues Logo" />
+        <a data-target="ticket"><img src="img/blues-small.png" alt="Bedford Blues Logo" /></a>
     </div>
     <h1>
         Blues Pass
@@ -43,7 +43,7 @@
         <div id="settings" class="card">
             <h1>Settings</h1>
             <p>
-                Load your season ticket, either by scanning
+                Load your season ticket, either by scanning the
                 QR code, uploading a screenshot of the QR code or entering
                 your season ticket number manually.
             </p>
@@ -53,6 +53,11 @@
                 <button class="btn" data-target="settings-upload">Upload QR Code</button>
                 <button class="btn" data-target="settings-input">Enter Season Ticket Number</button>
             </div>
+
+            <p class="uninstalled">
+                Don't forget to click on <b>Install App</b> on Android or <b>Add to Home Screen</b> on
+                your iPhone for quick game day access.
+            </p>
         </div>
 
         <div id="settings-scan" class="card">
@@ -103,11 +108,20 @@
             <div class="with-ticket">
                 <canvas id="qr-code"></canvas>
                 <p id="qr-result"></p>
+
+                <p class="uninstalled">
+                    Don't forget to click on <b>Install App</b> on Android or <b>Add to Home Screen</b> on
+                    your iPhone for quick game day access.
+                </p>
             </div>
             <div class="without-ticket">
                 <p>
-                    Go to <a data-target="settings">Settings</a> to add your season ticket
+                    Go to <b><a data-target="settings">Settings</a></b> to add your season ticket
                     QR code for easy access.
+                </p>
+                <p class="uninstalled">
+                    Don't forget to click on <b>Install App</b> on Android or <b>Add to Home Screen</b> on
+                    your iPhone for quick game day access.
                 </p>
             </div>
         </div>
