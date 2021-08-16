@@ -39,8 +39,7 @@ import QrScanner from './qr-scanner.min.js';
             document.getElementById('qr-video'),
             result => setValueAndShow(result),
             error => {});
-        //window.scanner = scanner;
-        // document.getElementById('scan-region').appendChild(scanner.$canvas);
+        document.getElementById('scan-region').appendChild(scanner.$canvas);
 
         function startCamera() {
             scanner.start().then(() => {
